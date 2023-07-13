@@ -10,7 +10,7 @@ UserRouter.post("/signup",async(req,res)=>{
     try {
         const {email,password,ConfirmPassword} = req.body;
         const isuserPresent = await UserModel.findOne({email});
-        if(!isuserPresent){
+        if(isuserPresent){
             return res.status(401).send({msg:"User is Already Registered."});
         }
         if(password != ConfirmPassword){
